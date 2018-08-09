@@ -316,6 +316,16 @@ def lanjutT():
 			os.remove(os.sys.path[0]+'/crackbteman.txt')
 			fid_bteman = []
 	return 0
+def lanjutG():
+	global fid_bgroup
+	if len(fid_bgroup) != 0:
+		i = inputD('[?]Riset Hasil Id Group/lanjutkan (r/l)',['R','L'])
+		if i.upper() == 'L':
+			return crack(fid_bgroup)
+		else:
+			os.remove(os.sys.path[0]+'/MBFbgroup.txt')
+			fid_bgroup = []
+	return 0
 
 def menu():
 
