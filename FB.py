@@ -85,7 +85,7 @@ if len(id_bteman) != 0:
 			open(os.sys.path[0]+'/MBFbteman.txt','w').write('\n'.join(id_bteman))
 			tampil('\rh vDone meyimpan \rcMBFbgteman.txt')
 		except:
-			tampil('\rm Gagal meyimpan X :(')
+			tampil('\rm Gagal meyimpan X ')
 def buka(d):
 	tampil('\rh %Membuka... \rp'+d)
 	try:
