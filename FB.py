@@ -72,7 +72,6 @@ def inputM(x,d):
 			tampil('\rm =>Pilihan Gak ada X')
 	return i
 def simpan():
-	if len(id_bteman) != 0:
 if len(id_bgroup) != 0:
 		tampil('\rh[*]Menyimpan hasil dari group')
 		try:
