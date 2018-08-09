@@ -32,9 +32,12 @@ br.set_handle_redirect(True)
 br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(),max_time=1)
 br.addheaders = [('User-Agent','Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16')]
 def bacaData():
-	global fid_bteman
+	global fid_bgroup,fid_bteman
 	try:
-		fid_bteman = open(os.sys.path[0]+'/crackbteman.txt','r').readlines()
+		fid_bgroup = open(os.sys.path[0]+'/MBFbgroup.txt','r').readlines()
+	except:pass
+	try:
+		fid_bteman = open(os.sys.path[0]+'/MBFbteman.txt','r').readlines()
 	except:pass
 def inputD(x,v=0):
 	while 1:
@@ -70,10 +73,18 @@ def inputM(x,d):
 	return i
 def simpan():
 	if len(id_bteman) != 0:
+if len(id_bgroup) != 0:
+		tampil('\rh[*]Menyimpan hasil dari group')
+		try:
+			open(os.sys.path[0]+'/MBFbgroup.txt','w').write('\n'.join(id_bgroup))
+			tampil('\rh[!]Berhasil meyimpan \rcMBFbgroup.txt')
+		except:
+			tampil('\rm[!]Gagal meyimpan')
+if len(id_bteman) != 0:
 		tampil('\rh %Sedang nyimpen data temen...')
 		try:
-			open(os.sys.path[0]+'/crackbteman.txt','w').write('\n'.join(id_bteman))
-			tampil('\rh vDone meyimpan \rc crackbgteman.txt')
+			open(os.sys.path[0]+'/MBFbteman.txt','w').write('\n'.join(id_bteman))
+			tampil('\rh vDone meyimpan \rcMBFbgteman.txt')
 		except:
 			tampil('\rm Gagal meyimpan X :(')
 def buka(d):
@@ -166,7 +177,7 @@ def idgroup():
 
 def idteman():
 	if log != 1:
-		tampil('\rc 0=====[ LOGIN ]=====0')
+		tampil('\rc _________0=====[ LOGIN ]=====0_________')
 		login()
 		if log == 0:
 			keluar()
